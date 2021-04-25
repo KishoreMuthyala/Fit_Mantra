@@ -1,0 +1,28 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<div class="card">
+<h3 style="text-align:center ;">Book Your Appointment</h3>
+<form action="appointment" method="POST">
+    {% csrf_token %}
+    <div class="inp">
+        <label>Date of Appointment</label>
+        <input type="date" class="form-control" name="app_date">
+    </div>
+    <div class="inp">
+        <label>Time of Appointment</label>
+        <input type="time" class="form-control" name="app_time">
+        <small>Available only between 10.00 to 22.00 </small>
+    </div>
+    <div class="inp">
+        <label>Description about Your problem</label>
+        <input type="text" class="form-control" name="app_des">
+    </div>
+    <input type="hidden" name="user_id" value="{{ user.id }}" />
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Submit</button>
+      </div>
+</form>
+</div>
+
+{% endblock %}

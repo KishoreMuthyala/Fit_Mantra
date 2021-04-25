@@ -1,0 +1,45 @@
+{% extends 'home/base.html' %}  {% block content %}
+
+<form action="register" method="POST" class="card">
+  {% csrf_token %} {% for message in messages %}
+  <div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';"
+      >&times;</span
+    >
+    {{ message }}
+  </div>
+  {% endfor %}
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" />
+  </div>
+  <div>
+    <label for="exampleInputEmail1">Email address</label>
+    <input
+      type="email"
+      name="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+    />
+  </div>
+  <div class="form-group comp">
+  <label for="exampleInputPassword1">Password</label>
+  <div class="div">
+    <i class="fa-eye-slash fas img" onclick="myFunc1('exampleInputPassword1')" id="show" ></i>
+    <input
+      type="password"
+      class="form-control input"
+      name="password1"
+      id="exampleInputPassword1"
+    />
+  </div>
+</div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Confirm Password</label>
+    <input type="password" class="form-control" name="password2" />
+  </div>
+  <button type="submit" class="btn btn-success lo">Register</button>
+  <a href="{% url 'login'%}" class="btn btn-light lo">Already have an Account? Click here to Login</a>
+</form>
+{% endblock %}

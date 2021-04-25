@@ -1,0 +1,35 @@
+{% extends "home/base.html" %}
+
+{% block content %}
+<div class="container">
+    <!-- <img class="container1" src="https://www.kindpng.com/picc/m/267-2676363_clip-art-fitness-logos-images-fitness-logo-free.png" alt="Snow" > -->
+    <div class="top-left"><p>Book your appointment to consult the doctor for eradication of your problem.
+      {% if user.is_authenticated %}
+      Book Your appointment by clicking the below button
+      <a href="{% url 'appointment' %}" class="btn book">Book your Appointment</a>
+    
+      {% endif %}
+    </p></div>
+    <div role="tabpanel">
+      <!-- List group -->
+      <div class="list-group" id="myList" role="tablist">
+        <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
+      </div>
+    
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="home" role="tabpanel">...h</div>
+        <div class="tab-pane" id="profile" role="tabpanel">...p</div>
+        <div class="tab-pane" id="messages" role="tabpanel">.m..</div>
+        <div class="tab-pane" id="settings" role="tabpanel">s...</div>
+      </div>
+    </div>
+  </div> 
+<!-- <div> -->
+<!-- <img src="https://www.kindpng.com/picc/m/267-2676363_clip-art-fitness-logos-images-fitness-logo-free.png"/>
+
+</div>
+{% endblock %}
