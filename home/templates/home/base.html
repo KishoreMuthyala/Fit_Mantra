@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fit Mantra</title>
+  <title> Fit Mantra</title>
+  <!-- <link rel="icon" href="https://m.media-amazon.com/images/S/aplus-media/sc/82e09269-029d-4262-8bdf-50a971f327d8.__CR0,145,5000,1500_PT0_SX600_V1___.jpg"> -->
   <script src="https://kit.fontawesome.com/c72056408c.js" crossorigin="anonymous"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
@@ -160,8 +161,9 @@
         max-width: 400px;
         margin: auto;
         margin-top: 10px;
-        opacity:0.9;
+        opacity: 0.9;
       }
+     
   
       .lo {
         width: 100%;
@@ -245,9 +247,21 @@
         z-index: -1;   
         background-repeat: no-repeat;
         background-size: cover;
+        background-color: #F7F7F7;
+
+      }
+      .app{
+        float:left;
+        width:350px;
+        height:200px;
+        margin-right: 30px;
+      }
+      .fon:hover{
+        font-size: 13pt;
 
       }
 
+     
 
       
       
@@ -274,30 +288,30 @@
           
           {% if user.is_authenticated %}
               <li class="nav-item">
-                <span class="nav-link m-2 menu-item nav-active" >Hello, {{ user.username }}</span>
+                <span class="nav-link m-2 menu-item nav-active fon" >Hello, {{ user.username }}</span>
               </li>
               {% if user.username == "doctor" %}
               <li class="nav-item active">
-                <a class="nav-link m-2 menu-item nav-active" aria-current="page" href="{% url 'doctor' %}">Appointments</a>
+                <a class="nav-link m-2 menu-item nav-active fon" aria-current="page" href="{% url 'doctor' %}">Appointments</a>
               </li>
               {% else %}
               <li class="nav-item active">
-                <a class="nav-link m-2 menu-item nav-active" href="{% url 'appointment' %}">Book Your Appointment</a>
+                <a class="nav-link m-2 menu-item nav-active fon" href="{% url 'appointment' %}">Book Your Appointment</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link m-2 menu-item nav-active" href="{% url 'myappointments' %}">Your appointments</a>
+                <a class="nav-link m-2 menu-item nav-active fon" href="{% url 'myappointments' %}">Your appointments</a>
               </li>
               {% endif %}
               <li class="nav-item active">
-                <a class="nav-link m-2 menu-item nav-active log" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'logout' %}">Logout</a>
               </li>
       
               {% else %}
               <li {% if 'login' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-                <a class="nav-link m-2 menu-item nav-active log" href="{% url 'login'%}">Login</a>
+                <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'login'%}">Login</a>
               </li>
               <li {% if 'register' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-                <a class="nav-link m-2 menu-item nav-active log" href="{% url 'register' %}">Register</a>
+                <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'register' %}">Register</a>
               </li>
               {% endif %}
       </ul>

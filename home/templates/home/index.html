@@ -1,15 +1,50 @@
 {% extends "home/base.html" %}
 
 {% block content %}
+{% if user.username == "doctor" %}
+{% if apps|length > 0 %}
+
+<div class="out">
+{% for app in apps %}
+ <div class="card app bg-light">
+    
+    <h6>Appointment Date:  {{ app.appointment_date }}</h6>
+    <h6>Appointment Time:  {{ app.appointment_time }}</h6>
+    <h6>Description of your problem:  {{ app.appointment_description }}</h6>
+    <h6>Email:  {{ app.user.email }}</h6>
+    <h6>Status: <i class="fas fa-circle" {% ifequal app.status  0 %} style=" color: orange;" {% endifequal %} {% ifequal app.status  1 %} style=" color: green;" {% endifequal %} {% ifequal app.status 2 %} style="color:red;" {% endifequal %} ></i> {% ifequal app.status  0 %} Pending {% endifequal %} {% ifequal app.status  1 %} Accepted {% endifequal %} {% ifequal app.status 2 %} Rejected {% endifequal %}</h6>
+
+    
+    
+    
+    <!-- <h6>Status: <i class="fas fa-circle" {% ifequal app.status  0 %} style=" color: orange;" {% endifequal %} {% ifequal app.status  1 %} style=" color: green;" {% endifequal %} {% ifequal app.status 2 %} style="color:red;" {% endifequal %} ></i> {% ifequal app.status  0 %} Pending {% endifequal %} {% ifequal app.status  1 %} Accepted {% endifequal %} {% ifequal app.status 2 %} Rejected {% endifequal %}</h6> -->
+    <!-- <form action="" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{ app.id }}" name="id1">
+        <input type="radio" name="stat" value="1">Accept
+        <input type="radio" name="stat" value="2">Reject
+        <button type="submit" class="btn btn-success lo">Submit</button>
+
+    </form> -->
+
+</div>
+{% endfor %}
+</div>
+{% else %}
+<h1>No Pending appointments</h1>
+{% endif %}
+
+{% else %}
+
 <div class="container">
     <!-- <img class="container1" src="https://www.kindpng.com/picc/m/267-2676363_clip-art-fitness-logos-images-fitness-logo-free.png" alt="Snow" > -->
-    <div class="top-left"><p>Book your appointment to consult the doctor for eradication of your problem.
+    <marquee class="top-left"><p>Book your appointment to consult the doctor for eradication of your problem.
       {% if user.is_authenticated %}
       Book Your appointment by clicking the below button
       <a href="{% url 'appointment' %}" class="btn book">Book your Appointment</a>
     
       {% endif %}
-    </p></div>
+    </p></marquee>
     <div role="tabpanel">
       <!-- List group -->
       <div class="list-group" id="myList" role="tablist">
@@ -28,8 +63,5 @@
       </div>
     </div>
   </div> 
-<!-- <div> -->
-<!-- <img src="https://www.kindpng.com/picc/m/267-2676363_clip-art-fitness-logos-images-fitness-logo-free.png"/>
-
-</div>
+{% endif %}
 {% endblock %}

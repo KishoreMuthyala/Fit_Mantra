@@ -53,7 +53,8 @@ def logout(request):
 
 
 def index(request):
-    return render(request, "home/index.html")
+    apps = Appointments.objects.filter(status=1)
+    return render(request, "home/index.html", {'apps': apps})
 
 
 def appointment(request):
@@ -69,11 +70,17 @@ def appointment(request):
         return redirect("myappointments")
     if not request.user.is_authenticated:
         return redirect("login")
+    if (request.user.username) == "doctor":
+        return redirect("home")
     return render(request, "home/appoint.html")
 
 
 def myappointments(request):
     if request.user.is_authenticated:
+        if request.method == "POST":
+            id1 = int(request.POST["app_id"])
+            Appointments.objects.get(id=id1).delete()
+            redirect("myappointments")
         apps = Appointments.objects.filter(user_id=request.user.id,)
         return render(request, "home/urappoint.html", {'apps': apps})
     return redirect("login")
