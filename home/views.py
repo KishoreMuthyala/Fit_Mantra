@@ -53,6 +53,10 @@ def logout(request):
 
 
 def index(request):
+    if request.method == "POST":
+        id1 = int(request.POST["app_id"])
+        Appointments.objects.get(id=id1).delete()
+        redirect("home")
     apps = Appointments.objects.filter(status=1)
     return render(request, "home/index.html", {'apps': apps})
 
@@ -62,10 +66,11 @@ def appointment(request):
         appointment_time = request.POST["app_time"]
         appointment_date = request.POST["app_date"]
         appointment_description = request.POST["app_des"]
+        phone_number = request.POST["app_ph"]
         #phone_number = request.POST["phone_number"]
         user_id = request.POST["user_id"]
         appointment = Appointments(appointment_date=appointment_date,
-                                   appointment_time=appointment_time, appointment_description=appointment_description, user_id=user_id)
+                                   appointment_time=appointment_time, appointment_description=appointment_description, phone_number=phone_number, user_id=user_id)
         appointment.save()
         return redirect("myappointments")
     if not request.user.is_authenticated:

@@ -4,18 +4,22 @@
 {% if user.username == "doctor" %}
 {% if apps|length > 0 %}
 
-<div class="out">
+<div class="cls">
 {% for app in apps %}
  <div class="card app bg-light">
     
     <h6>Appointment Date:  {{ app.appointment_date }}</h6>
     <h6>Appointment Time:  {{ app.appointment_time }}</h6>
     <h6>Description of your problem:  {{ app.appointment_description }}</h6>
+    <h6>Phone Number  {{ app.phone_number }}</h6>
     <h6>Email:  {{ app.user.email }}</h6>
     <h6>Status: <i class="fas fa-circle" {% ifequal app.status  0 %} style=" color: orange;" {% endifequal %} {% ifequal app.status  1 %} style=" color: green;" {% endifequal %} {% ifequal app.status 2 %} style="color:red;" {% endifequal %} ></i> {% ifequal app.status  0 %} Pending {% endifequal %} {% ifequal app.status  1 %} Accepted {% endifequal %} {% ifequal app.status 2 %} Rejected {% endifequal %}</h6>
-
-    
-    
+    <form action="" method="POST" class="del">
+      {% csrf_token %}
+   <input type="hidden" value="{{app.id}}" name="app_id">
+   
+   <button class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>       
+  </form>
     
     <!-- <h6>Status: <i class="fas fa-circle" {% ifequal app.status  0 %} style=" color: orange;" {% endifequal %} {% ifequal app.status  1 %} style=" color: green;" {% endifequal %} {% ifequal app.status 2 %} style="color:red;" {% endifequal %} ></i> {% ifequal app.status  0 %} Pending {% endifequal %} {% ifequal app.status  1 %} Accepted {% endifequal %} {% ifequal app.status 2 %} Rejected {% endifequal %}</h6> -->
     <!-- <form action="" method="POST">
@@ -40,26 +44,221 @@
     <!-- <img class="container1" src="https://www.kindpng.com/picc/m/267-2676363_clip-art-fitness-logos-images-fitness-logo-free.png" alt="Snow" > -->
     <marquee class="top-left"><p>Book your appointment to consult the doctor for eradication of your problem.
       {% if user.is_authenticated %}
-      Book Your appointment by clicking the below button
-      <a href="{% url 'appointment' %}" class="btn book">Book your Appointment</a>
+      Book Your appointment by 
+      <a href="{% url 'appointment' %}" >Clicking Here</a>
     
       {% endif %}
     </p></marquee>
+    <h1>Diet Plans</h1>
     <div role="tabpanel">
       <!-- List group -->
       <div class="list-group" id="myList" role="tablist">
-        <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">Home</a>
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">Profile</a>
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">Messages</a>
-        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">Settings</a>
+        <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#home" role="tab">1. Intermittent fasting</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#profile" role="tab">2. Plant-based diets</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#messages" role="tab">3. Low-carb diets</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#settings" role="tab">4. The paleo diet</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#fifth" role="tab">5. Low-fat diets</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#sixth" role="tab">6. The Mediterranean diet</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#seventh" role="tab"> 7. WW (Weight Watchers)</a>
+        <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#eight" role="tab"> 8. The DASH diet</a>
       </div>
     
       <!-- Tab panes -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel">...h</div>
-        <div class="tab-pane" id="profile" role="tabpanel">...p</div>
-        <div class="tab-pane" id="messages" role="tabpanel">.m..</div>
-        <div class="tab-pane" id="settings" role="tabpanel">s...</div>
+      <div class="tab-content" style="padding: 10px;">
+        <div class="tab-pane active" id="home" role="tabpanel">
+          Intermittent fasting is a dietary strategy that cycles between periods of fasting and eating.
+ Various forms exist, including the 16/8 method, which involves limiting your calorie intake to 8 hours per day, and the 5:2 method, which restricts your daily calorie intake to 500–600 calories twice per week. 
+<h3>How it works:</h3>Intermittent fasting restricts the time you’re allowed to eat, which is a simple way to reduce your calorie intake. This can lead to weight loss — unless you compensate by eating too much food during allowed eating periods.
+<h3>Weight loss:</h3> In a review of studies, intermittent fasting was shown to cause 3–8% weight loss over 3–24 weeks, which is a significantly greater percentage than other methods (2Trusted Source).
+The same review showed that this way of eating may reduce waist circumference by 4–7%, which is a marker for harmful belly fat (2Trusted Source). Other studies found that intermittent fasting can increase fat burning while preserving muscle mass, which can improve metabolism (3Trusted Source, 4Trusted Source).
+
+<h3>Other benefits:</h3> Intermittent fasting has been linked to anti-aging effects, increased insulin sensitivity, improved brain health, reduced inflammation, and many other benefits (5Trusted Source, 6Trusted Source).
+
+<h3>Downsides:</h3> In general, intermittent fasting is safe for most healthy adults.
+
+That said, those sensitive to drops in their blood sugar levels, such as some people with diabetes, low weight, or an eating disorder, as well as pregnant or breastfeeding women, should talk to a health professional before starting intermittent fasting.
+
+<h3>SUMMARY</h3>
+Intermittent fasting cycles between periods of fasting and eating. It has been shown to aid weight loss and is linked to many other health benefits.
+        </div>
+        <div class="tab-pane" id="profile" role="tabpanel">
+          Plant-based diets may help you lose weight. Vegetarianism and veganism are the most popular versions, which restrict animal products for health, ethical, and environmental reasons.
+
+However, more flexible plant-based diets also exist, such as the flexitarian diet, which is a plant-based diet that allows eating animal products in moderation.
+
+<h3>How it works:</h3> There are many types of vegetarianism, but most involve eliminating all meat, poultry, and fish. Some vegetarians may likewise avoid eggs and dairy.
+
+The vegan diet takes it a step further by restricting all animal products, as well as animal-derived products like dairy, gelatin, honey, whey, casein, and albumin.
+
+There are no clear-cut rules for the flexitarian diet, as it’s a lifestyle change rather than a diet. It encourages eating mostly fruits, vegetables, legumes, and whole grains but allows for protein and animal products in moderation, making it a popular alternative.
+
+Many of the restricted food groups are high in calories, so limiting them may aid weight loss.
+
+<h3>Weight loss:</h3> Research shows that plant-based diets are effective for weight loss (7Trusted Source, 8Trusted Source, 9Trusted Source).
+
+A review of 12 studies including 1,151 participants found that people on a plant-based diet lost an average of 4.4 pounds (2 kg) more than those who included animal products (10Trusted Source).
+
+Plus, those following a vegan diet lost an average of 5.5 pounds (2.5 kg) more than people not eating a plant-based diet (10Trusted Source).
+
+Plant-based diets likely aid weight loss because they tend to be rich in fiber, which can help you stay fuller for longer, and low in high-calorie fat (11Trusted Source, 12Trusted Source, 13Trusted Source).
+
+<h3>Other benefits:</h3> Plant-based diets have been linked to many other benefits, such as a reduced risk of chronic conditions like heart disease, certain cancers, and diabetes. They can also be more environmentally sustainable than meat-based diets (14Trusted Source, 15Trusted Source, 16Trusted Source, 17Trusted Source).
+
+<h3>Downsides:</h3> Though plant-based diets are healthy, they can restrict important nutrients that are typically found in animal products, such as iron, vitamin B12, vitamin D, calcium, zinc, and omega-3 fatty acids.
+
+A flexitarian approach or proper supplementation can help account for these nutrients.
+
+<h3>SUMMARY</h3>
+Plant-based diets restrict meat and animal products for various reasons. Studies show that they aid weight loss by reducing your calorie intake and offer many other benefit
+        </div>
+        <div class="tab-pane" id="messages" role="tabpanel">
+          
+Low-carb diets are among the most popular diets for weight loss. Examples include the Atkins diet, ketogenic (keto) diet, and low-carb, high-fat (LCHF) diet.
+
+Some varieties reduce carbs more drastically than others. For instance, very-low-carb diets like the keto diet restrict this macronutrient to under 10% of total calories, compared with 30% or less for other types (18Trusted Source).
+
+<h3>How it works:</h3> Low-carb diets restrict your carb intake in favor of protein and fat.
+
+They’re typically higher in protein than low-fat diets, which is important, as protein can help curb your appetite, raise your metabolism, and conserve muscle mass (19Trusted Source, 20Trusted Source).
+
+In very-low-carb diets like keto, your body begins using fatty acids rather than carbs for energy by converting them into ketones. This process is called ketosis (21Trusted Source).
+
+<h3>Weight loss:</h3> Many studies indicate that low-carb diets can aid weight loss and may be more effective than conventional low-fat diets (22Trusted Source, 23Trusted Source, 24Trusted Source, 25Trusted Source).
+
+For example, a review of 53 studies including 68,128 participants found that low-carb diets resulted in significantly more weight loss than low-fat diets (22Trusted Source).
+
+What’s more, low-carb diets appear to be quite effective at burning harmful belly fat (26Trusted Source, 27Trusted Source, 28Trusted Source).
+
+<h3>Other benefits:</h3> Research suggests that low-carb diets may reduce risk factors for heart disease, including high cholesterol and blood pressure levels. They may also improve blood sugar and insulin levels in people with type 2 diabetes (29Trusted Source, 30Trusted Source).
+
+<h3>Downsides:</h3> In some cases, a low-carb diet may raise LDL (bad) cholesterol levels. Very-low-carb diets can also be difficult to follow and cause digestive upset in some people (31Trusted Source).
+
+In very rare situations, following a very-low-carb diet may cause a condition known as ketoacidosis, a dangerous metabolic condition that can be fatal if left untreated (32Trusted Source, 33Trusted Source).
+
+<h3>SUMMARY</h3>
+Low-carb diets restrict your carb intake, which encourages your body to use more fat as fuel. They can help you lose weight and offer many other benefits
+        </div>
+        <div class="tab-pane" id="settings" role="tabpanel">
+          
+The paleo diet advocates eating the same foods that your hunter-gatherer ancestors allegedly ate.
+
+It’s based on the theory that modern diseases are linked to the Western diet, as proponents believe that the human body hasn’t evolved to process legumes, grains, and dairy.
+
+<h3>How it works:</h3> The paleo diet advocates eating whole foods, fruits, vegetables, lean meats, nuts, and seeds. It restricts the consumption of processed foods, grains, sugar, and dairy, though some less restrictive versions allow for some dairy products like cheese.
+
+<h3>Weight loss:</h3> Numerous studies have shown that the paleo diet can aid weight loss and reduce harmful belly fat (34Trusted Source, 35Trusted Source, 36Trusted Source).
+
+For example, in one 3-week study, 14 healthy adults following a paleo diet lost an average of 5.1 pounds (2.3 kg) and reduced their waist circumference — a marker for belly fat — by an average of 0.6 inches (1.5 cm) (37Trusted Source).
+
+Research also suggests that the paleo diet may be more filling than popular diets like the Mediterranean diet and low-fat diets. This may be due to its high protein content (38Trusted Source, 39Trusted Source).
+
+<h3>Other benefits:</h3> Following the paleo diet may reduce several heart disease risk factors, such as high blood pressure, cholesterol, and triglyceride levels (40Trusted Source, 41Trusted Source).
+
+<h3>Downsides:</h3> Though the paleo diet is healthy, it restricts several nutritious food groups, including legumes, whole grains, and dairy.
+
+<h3>SUMMARY</h3>
+The paleo diet advocates eating whole foods, similarly to how your ancestors ate. Studies show that it may aid weight loss and reduce heart disease risk factors.
+        </div>
+        <div class="tab-pane" id="fifth" role="tabpanel">
+          
+          Like low-carb diets, low-fat diets have been popular for decades.
+          
+          In general, a low-fat diet involves restricting your fat intake to 30% of your daily calories.
+          
+          Some very- and ultra-low-fat diets aim to limit fat consumption to under 10% of calories (24Trusted Source).
+          
+          <h3>How it works:</h3> Low-fat diets restrict fat intake because fat provides about twice the number of calories per gram, compared with the other two macronutrients — protein and carbs.
+         
+          Ultra-low-fat diets contain fewer than 10% of calories from fat, with approximately 80% of calories coming from carbs and 10% from protein.
+          
+          Ultra-low-fat diets are mainly plant-based and limit meat and animal products.
+          
+          <h3>Weight loss:</h3> As low-fat diets restrict calorie intake, they can aid weight loss (42Trusted Source, 43Trusted Source, 44Trusted Source, 45Trusted Source).
+          
+          An analysis of 33 studies including over 73,500 participants found that following a low-fat diet led to small but relevant changes in weight and waist circumference (42Trusted Source).
+          
+          However, while low-fat diets appear to be as effective as low-carb diets for weight loss in controlled situations, low-carb diets seem to be more effective day to day (22Trusted Source, 46Trusted Source, 47Trusted Source).
+          
+          Ultra-low-fat diets have been shown to be successful, especially among people with obesity. For example, an 8-week study in 56 participants found that eating a diet comprising 7–14% fat led to an average weight loss of 14.8 pounds (6.7 kg) (48Trusted Source).
+          
+          <h3>Other benefits:</h3> Low-fat diets have been linked to a reduced risk of heart disease and stroke. They may also reduce inflammation and improve markers of diabetes (49Trusted Source, 50Trusted Source, 51Trusted Source).
+          
+          <h3>Downsides:</h3> Restricting fat too much can lead to health problems in the long term, as fat plays a key role in hormone production, nutrient absorption, and cell health. Moreover, very-low-fat diets have been linked to a higher risk of metabolic syndrome (52Trusted Source).
+          
+          <h3>SUMMARY</h3>
+          Low-fat diets restrict your intake of fat, as this macronutrient is higher in calories than protein and carbs. Studies have linked low-fat diets to weight loss and lower risks of heart disease and diabetes.
+        </div>
+        <div class="tab-pane" id="sixth" role="tabpanel">
+          
+          The Mediterranean diet is based on foods that people in countries like Italy and Greece used to eat.
+          
+          Though it was designed to lower heart disease risk, numerous studies indicate that it can also aid weight loss (53Trusted Source).
+          
+          <h3>How it works:</h3> The Mediterranean diet advocates eating plenty of fruits, vegetables, nuts, seeds, legumes, tubers, whole grains, fish, seafood, and extra virgin olive oil.
+         
+          Foods such as poultry, eggs, and dairy products are to be eaten in moderation. Meanwhile, red meats are limited.
+          
+          Additionally, the Mediterranean diet restricts refined grains, trans fats, refined oils, processed meats, added sugar, and other highly processed foods.
+          
+          <h3>Weight loss:</h3> Though it’s not specifically a weight loss diet, many studies show that adopting a Mediterranean-style diet may aid weight loss (53Trusted Source, 54Trusted Source, 55Trusted Source).
+          
+          For example, an analysis of 19 studies found that people who combined the Mediterranean diet with exercise or calorie restriction lost an average of 8.8 pounds (4 kg) more than those on a control diet (53Trusted Source).
+          
+          <h3>Other benefits:</h3> The Mediterranean diet encourages eating plenty of antioxidant-rich foods, which may help combat inflammation and oxidative stress by neutralizing free radicals. It has been linked to reduced risks of heart disease and premature death (55Trusted Source, 56Trusted Source).
+          
+          <h3>Downsides:</h3> As the Mediterranean diet is not strictly a weight loss diet, people may not lose weight following it unless they also consume fewer calories.
+          
+          <h3>SUMMARY</h3>
+          The Mediterranean diet emphasizes eating plenty of fruits, vegetables, fish, and healthy oils while restricting refined and highly processed foods. While it’s not a weight loss diet, studies show that it can promote weight loss and overall health.
+        </div>
+        <div class="tab-pane" id="seventh" role="tabpanel">
+         
+          WW, formerly Weight Watchers, is one of the most popular weight loss programs worldwide.
+          
+          While it doesn’t restrict any food groups, people on a WW plan must eat within their set daily points to reach their ideal weight (57Trusted Source).
+          
+          <h3>How it works:</h3> WW is a points-based system that assigns different foods and beverages a value, depending on their calorie, fat, and fiber contents.
+        
+          To reach your desired weight, you must stay within your daily point allowance.
+          
+          <h3>Weight loss:</h3> Many studies show that the WW program can help you lose weight (58Trusted Source, 59Trusted Source, 60Trusted Source, 61Trusted Source).
+          
+          For example, a review of 45 studies found that people who followed a WW diet lost 2.6% more weight than people who received standard counseling (62Trusted Source).
+          
+          What’s more, people who follow WW programs have been shown to be more successful at maintaining weight loss after several years, compared with those who follow other diets (63Trusted Source, 64Trusted Source).
+          
+          <h3>Other benefits:</h3> WW allows flexibility, making it easy to follow. This enables people with dietary restrictions, such as those with food allergies, to adhere to the plan.
+          
+          <h3>Downsides:</h3> While it allows for flexibility, WW can be costly depending on the subscription plan. Also, it’s flexibility can be a downfall if dieters choose unhealthy foods.
+          
+          <h3>SUMMARY</h3>
+          WW, or Weight Watchers, is a weight loss program that uses a points-based system. Studies show that it’s effective for long-term weight loss and highly flexible.
+        </div>
+        <div class="tab-pane" id="eight" role="tabpanel">
+         
+          Dietary Approaches to Stop Hypertension, or DASH diet, is an eating plan that is designed to help treat or prevent high blood pressure, which is clinically known as hypertension.
+          
+          It emphasizes eating plenty of fruits, vegetables, whole grains, and lean meats and is low in salt, red meat, added sugars, and fat.
+          
+          While the DASH diet is not a weight loss diet, many people report losing weight on it.
+          
+          <h3>How it works:</h3> The DASH diet recommends specific servings of different food groups. The number of servings you are allowed to eat depends on your daily calorie intake.
+        
+          For example, an average person on the DASH diet would eat about 5 servings of vegetables, 5 servings of fruit, 7 servings of healthy carbs like whole grains, 2 servings of low-fat dairy products, and 2 servings or fewer of lean meats per day.
+          
+          In addition, you’re allowed to eat nuts and seeds 2–3 times per week (65Trusted Source).
+          
+          <h3>Weight loss:</h3> Studies show that the DASH diet can help you lose weight (66Trusted Source, 67Trusted Source, 68Trusted Source, 69Trusted Source).
+          
+          For example, an analysis of 13 studies found that people on the DASH diet lost significantly more weight over 8–24 weeks than people on a control diet (70Trusted Source).
+          
+          <h3>Other benefits:</h3> The DASH diet has been shown to reduce blood pressure levels and several heart disease risk factors. Also, it may help combat recurrent depressive symptoms and lower your risk of breast and colorectal cancer (71Trusted Source, 72Trusted Source, 73Trusted Source, 74Trusted Source, 75Trusted Source, 76Trusted Source).
+          
+          <h3>Downsides:</h3> While the DASH diet may aid weight loss, there is mixed evidence on salt intake and blood pressure. In addition, eating too little salt has been linked to increased insulin resistance and an increased risk of death in people with heart failure (77Trusted Source, 78Trusted Source).
+          
+          <h3>SUMMARY</h3>
+          The DASH diet is a low-salt diet that has been shown to aid weight loss. Studies have also linked it to additional benefits for your heart and reduced risks of other chronic diseases.
+        </div>
       </div>
     </div>
   </div> 

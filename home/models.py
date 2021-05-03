@@ -7,5 +7,5 @@ class Appointments(models.Model):
     appointment_date = models.TextField()
     appointment_time = models.CharField(max_length=200)
     appointment_description = models.CharField(max_length=100)
-    #phone_number = models.CharField(max_length=15)
+    phone_number = models.CharField(max_length=15)
     status = models.IntegerField(default=0)

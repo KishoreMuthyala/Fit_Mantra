@@ -1,7 +1,7 @@
 {% extends "home/base.html" %}
 
 {% block content %}
-
+<div class="cls">
 {% for app in apps %}
  <div class="card app bg-light">
     
@@ -9,15 +9,18 @@
     <h6>Appointment Time:  {{app.appointment_time}}</h6>
     
     <h6>Description of your problem:  {{app.appointment_description}}</h6>
+    <h6>Phone Number  {{ app.phone_number }}</h6>
     
     <h6>Status: <i class="fas fa-circle" {% ifequal app.status  0 %} style=" color: orange;" {% endifequal %} {% ifequal app.status  1 %} style=" color: green;" {% endifequal %} {% ifequal app.status 2 %} style="color:red;" {% endifequal %} ></i> {% ifequal app.status  0 %} Pending {% endifequal %} {% ifequal app.status  1 %} Accepted {% endifequal %} {% ifequal app.status 2 %} Rejected {% endifequal %}</h6>
 
-    <form action="" method="POST">
+    <form action="" method="POST" class="del">
         {% csrf_token %}
      <input type="hidden" value="{{app.id}}" name="app_id">
+     
      <button class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>       
     </form>
 </div>
 {% endfor %}
+</div>
 
 {% endblock %}

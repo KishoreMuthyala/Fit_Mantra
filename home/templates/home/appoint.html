@@ -7,16 +7,20 @@
     {% csrf_token %}
     <div class="inp">
         <label>Date of Appointment</label>
-        <input type="date" class="form-control" name="app_date">
+        <input type="date" class="form-control" name="app_date" required>
     </div>
     <div class="inp">
         <label>Time of Appointment</label>
-        <input type="time" class="form-control" name="app_time">
+        <input type="time" class="form-control" name="app_time" required>
         <small>Available only between 10.00 to 22.00 </small>
     </div>
     <div class="inp">
         <label>Description about Your problem</label>
-        <input type="text" class="form-control" name="app_des">
+        <input type="text" class="form-control" name="app_des" required>
+    </div>
+    <div class="inp">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" name="app_ph" required maxlength="15">
     </div>
     <input type="hidden" name="user_id" value="{{ user.id }}" />
     <div class="col-auto">
