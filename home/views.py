@@ -63,16 +63,20 @@ def index(request):
 
 def appointment(request):
     if request.method == "POST":
-        appointment_time = request.POST["app_time"]
-        appointment_date = request.POST["app_date"]
-        appointment_description = request.POST["app_des"]
-        phone_number = request.POST["app_ph"]
-        #phone_number = request.POST["phone_number"]
-        user_id = request.POST["user_id"]
-        appointment = Appointments(appointment_date=appointment_date,
-                                   appointment_time=appointment_time, appointment_description=appointment_description, phone_number=phone_number, user_id=user_id)
-        appointment.save()
-        return redirect("myappointments")
+        appo = Appointments.objects.filter(user_id=request.POST["user_id"])
+        if len(appo) > 0:
+            messages.error(request, "Appointment Already Taken")
+        else:
+            appointment_time = request.POST["app_time"]
+            appointment_date = request.POST["app_date"]
+            appointment_description = request.POST["app_des"]
+            phone_number = request.POST["app_ph"]
+            #phone_number = request.POST["phone_number"]
+            user_id = request.POST["user_id"]
+            appointment = Appointments(appointment_date=appointment_date,
+                                       appointment_time=appointment_time, appointment_description=appointment_description, phone_number=phone_number, user_id=user_id)
+            appointment.save()
+            return redirect("myappointments")
     if not request.user.is_authenticated:
         return redirect("login")
     if (request.user.username) == "doctor":
@@ -86,8 +90,8 @@ def myappointments(request):
             id1 = int(request.POST["app_id"])
             Appointments.objects.get(id=id1).delete()
             redirect("myappointments")
-        apps = Appointments.objects.filter(user_id=request.user.id,)
-        return render(request, "home/urappoint.html", {'apps': apps})
+        app = Appointments.objects.filter(user_id=request.user.id,)
+        return render(request, "home/urappoint.html", {'app': app})
     return redirect("login")
 
 
@@ -117,3 +121,24 @@ def doctor(request):
 
         return render(request, "home/doctor.html", {"apps": apps, })
     return redirect("home")
+
+
+def edit(request):
+    app = {}
+
+    if request.method == "POST":
+        if "user1_id" in request.POST.keys():
+            id1 = request.POST.get("user1_id", 1)
+            app = Appointments.objects.get(user_id=id1)
+        else:
+            id1 = request.POST.get("user_id1", 1)
+            app = Appointments.objects.get(user_id=id1)
+            app.appointment_time = request.POST["app_time"]
+            app.appointment_date = request.POST["app_date"]
+            app.appointment_description = request.POST["app_des"]
+            app.phone_number = request.POST["app_ph"]
+            #phone_number = request.POST["phone_number"]
+            app.save()
+            return redirect("myappointments")
+
+    return render(request, "home/edit.html", {"app": app})

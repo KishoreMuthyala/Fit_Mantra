@@ -1,9 +1,10 @@
 {% extends "home/base.html" %}
 
 {% block content %}
-<div class="cls">
-{% for app in apps %}
- <div class="card app bg-light">
+
+{% if app %}
+ {% for app in app %}
+ <div class="card">
     
     <h6>Appointment Date:  {{app.appointment_date}}</h6>
     <h6>Appointment Time:  {{app.appointment_time}}</h6>
@@ -12,15 +13,25 @@
     <h6>Phone Number  {{ app.phone_number }}</h6>
     
     <h6>Status: <i class="fas fa-circle" {% ifequal app.status  0 %} style=" color: orange;" {% endifequal %} {% ifequal app.status  1 %} style=" color: green;" {% endifequal %} {% ifequal app.status 2 %} style="color:red;" {% endifequal %} ></i> {% ifequal app.status  0 %} Pending {% endifequal %} {% ifequal app.status  1 %} Accepted {% endifequal %} {% ifequal app.status 2 %} Rejected {% endifequal %}</h6>
-
+   <div class="d-flex justify-content-between">
     <form action="" method="POST" class="del">
         {% csrf_token %}
      <input type="hidden" value="{{app.id}}" name="app_id">
      
      <button class="btn btn-danger"><i class="fas fa-trash"></i> Delete</button>       
     </form>
+    <form action="{% url 'edit' %}" method="POST" >
+        {% csrf_token %}
+     <input type="hidden" value="{{user.id}}" name="user1_id">
+     
+     <button class="btn btn-primary"><i class="fas fa-edit"></i>Edit</button>       
+    </form>
+    </div>
 </div>
-{% endfor %}
-</div>
+{%endfor%}
 
+
+{%else%}
+<h3>No Appointments. <a href="{% url 'appointment' %}">Click here</a> to book your appointments</h3>
+{% endif %}
 {% endblock %}

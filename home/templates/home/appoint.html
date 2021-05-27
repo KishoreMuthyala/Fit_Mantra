@@ -1,11 +1,19 @@
 {% extends "home/base.html" %}
 
 {% block content %}
-<div class="card">
+<div class="card" >
 <h3 style="text-align:center ;">Book Your Appointment</h3>
+{% for message in messages %}
+  <div class="alert" id="clr">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';"
+      >&times;</span
+    >
+    {{ message }}
+  </div>
+  {% endfor %}
 <form action="appointment" method="POST">
     {% csrf_token %}
-    <div class="inp">
+    <div class="inp ">
         <label>Date of Appointment</label>
         <input type="date" class="form-control" name="app_date" required>
     </div>
@@ -23,7 +31,7 @@
         <input type="text" class="form-control" name="app_ph" required maxlength="15">
     </div>
     <input type="hidden" name="user_id" value="{{ user.id }}" />
-    <div class="col-auto">
+    <div class="col-auto inp" style="text-align: center;">
         <button type="submit" class="btn btn-primary mb-3">Submit</button>
       </div>
 </form>
