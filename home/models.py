@@ -9,3 +9,9 @@ class Appointments(models.Model):
     appointment_description = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15)
     status = models.IntegerField(default=0)
+
+
+class Feedbacks(models.Model):
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    rate = models.IntegerField(default=0)
+    description = models.TextField()

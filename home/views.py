@@ -1,8 +1,12 @@
-from .models import Appointments
+from django.db import reset_queries
+from .models import Appointments, Feedbacks
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from django.contrib.auth import login as kishore, authenticate, logout
+
+import html
+chatList = []
 
 
 def register(request):
@@ -54,11 +58,24 @@ def logout(request):
 
 def index(request):
     if request.method == "POST":
-        id1 = int(request.POST["app_id"])
-        Appointments.objects.get(id=id1).delete()
-        redirect("home")
+        if "chat-user" in request.POST.keys():
+            chat = request.POST["chat-user"]
+            if chat != "":
+                chatList.append(chat)
+                if chat.lower() == "hi":
+                    chatList.append("Hello! How can i help you?")
+                elif chat.lower() == "how to book my appointment":
+                    chatList.append(
+                        "Go to book your appointment from navigation menu")
+                else:
+                    chatList.append("Sorry! I didn't get it")
+
+        else:
+            id1 = int(request.POST["app_id"])
+            Appointments.objects.get(id=id1).delete()
+            redirect("home")
     apps = Appointments.objects.filter(status=1)
-    return render(request, "home/index.html", {'apps': apps})
+    return render(request, "home/index.html", {'apps': apps, 'chats': chatList})
 
 
 def appointment(request):
@@ -142,3 +159,20 @@ def edit(request):
             return redirect("myappointments")
 
     return render(request, "home/edit.html", {"app": app})
+
+
+def about(request):
+    return render(request, "home/about.html")
+
+
+def feedback(request):
+    feed_user = Feedbacks.objects.filter(user_id=request.user.id)
+    allfeeds = Feedbacks.objects.all()
+    if request.method == "POST":
+        rate = request.POST["rate"]
+        des = request.POST["suggest"]
+        user_id = request.POST["user_id"]
+        feed = Feedbacks(rate=rate, description=des, user_id=user_id)
+        feed.save()
+
+    return render(request, "home/feedback.html", {"feeds": feed_user, "allfeeds": allfeeds})

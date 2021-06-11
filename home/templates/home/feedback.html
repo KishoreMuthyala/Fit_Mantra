@@ -1,0 +1,140 @@
+{% extends 'home/base.html'%}
+{% block content %}
+    {% if user.username == "doctor" %}
+        {% if allfeeds|length > 0 %}
+            <div class="cls">
+                {% for feed in allfeeds %}
+                <div class="card app bg-light">
+                    <h6>Username:  {{ feed.user.username }}</h6>
+                    <h6>Email:  {{ feed.user.email }}</h6>
+                    
+                    <h6>Rating: 
+                        {% if feed.rate == 1 %}
+                          <i class="fas fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                          <i class="far fa-star"></i>
+                        {% elif feed.rate == 2 %}
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        {% elif feed.rate == 3 %}
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        {% elif feed.rate == 4 %}
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        {% elif feed.rate == 5 %}
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        {% else %}
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                        {% endif %}
+                    </h6>
+                    <h6>Description:  {{ feed.description }}</h6>
+                </div>
+                {% endfor %}
+            </div>
+{% else %}
+<h1>No Accepted appointments</h1>
+{% endif %}
+
+{% else %}
+       
+    <div class="feedback text-center d-flex flex-column justify-content-center">
+        {% if feeds|length > 0 %}
+          <div class="star-widget">
+          <p style="color: aliceblue;">You have already given feedback! Thank You</p>
+        </div>
+        {% else %}
+        <form class="star-widget" action="" method="POST">
+            {% csrf_token %}
+            <label for="rate-1" class="fas fa-star star-icon" id="rate-l-1"></label>
+            <input type="radio" name="rate" id="rate-1" value="1" onclick="feedback()">
+            <label for="rate-2" class="fas fa-star star-icon" id="rate-l-2"></label>
+            <input type="radio" name="rate" id="rate-2" value="2" onclick="feedback()">
+            <label for="rate-3" class="fas fa-star star-icon" id="rate-l-3"></label>
+            <input type="radio" name="rate" id="rate-3" value="3" onclick="feedback()">
+            <label for="rate-4" class="fas fa-star star-icon" id="rate-l-4"></label>
+            <input type="radio" name="rate" id="rate-4" value="4" onclick="feedback()">
+            <label for="rate-5" class="fas fa-star star-icon" id="rate-l-5"></label>
+            <input type="radio" name="rate" id="rate-5" value="5" onclick="feedback()">
+            <div class="textarea mt-5">
+                <textarea cols="30" style="width: max-content;" placeholder="Describe your experience.." name="suggest" class="form-control m-auto"></textarea>
+            </div>
+            
+            <input type="hidden" name="user_id" value="{{ user.id }}" />
+            
+            <button class="btn btn-primary mt-5" type="submit">Post</button>
+            
+        </form>
+        {% endif %}
+    </div>
+    <script>
+        function feedback(){
+        var r1=document.getElementById("rate-1");
+        var r2=document.getElementById("rate-2");
+        var r3=document.getElementById("rate-3");
+        var r4=document.getElementById("rate-4");
+        var r5=document.getElementById("rate-5");
+        var rl1=document.getElementById("rate-l-1");
+        var rl2=document.getElementById("rate-l-2");
+        var rl3=document.getElementById("rate-l-3");
+        var rl4=document.getElementById("rate-l-4");
+        var rl5=document.getElementById("rate-l-5");
+        
+        if(r1.checked){
+            rl1.style.color="#fd4";
+            rl2.style.color="#000";
+            rl3.style.color="#000";
+            rl4.style.color="#000";
+            rl5.style.color="#000";
+        }
+        if(r2.checked){
+            rl1.style.color="#fd4";
+            rl2.style.color="#fd4";
+            rl3.style.color="#000";
+            rl4.style.color="#000";
+            rl5.style.color="#000";
+        }
+        if(r3.checked){
+            rl1.style.color="#fd4";
+            rl2.style.color="#fd4";
+            rl3.style.color="#fd4";
+            rl4.style.color="#000";
+            rl5.style.color="#000";
+        }
+        if(r4.checked){
+            rl1.style.color="#fd4";
+            rl2.style.color="#fd4";
+            rl3.style.color="#fd4";
+            rl4.style.color="#fd4";
+            rl5.style.color="#000";
+        }
+        if(r5.checked){
+            rl1.style.color="#fd4";
+            rl2.style.color="#fd4";
+            rl3.style.color="#fd4";
+            rl4.style.color="#fd4";
+            rl5.style.color="#fd4";
+        }
+    }
+     </script>
+    {% endif %}
+{%  endblock %}

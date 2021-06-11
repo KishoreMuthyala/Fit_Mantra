@@ -15,6 +15,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
     <script>
+      
+      function chat(){
+         var sub=document.getElementById("form-submit");
+         sub.submit()
+      }
      
       function myFunction() {
         var x = document.getElementById("exampleInputPassword1");
@@ -163,8 +168,14 @@
         margin-top: 10px;
         opacity: 0.9;
       }
-     
-  
+      .chat-you-container{
+        padding: 20px;
+      }
+      .chat-you{
+        border-width: 0px;
+        background-color:white;
+        border-radius: 8px;
+      }
       .lo {
         width: 100%;
         margin-top: 20px;
@@ -271,12 +282,139 @@
         margin-top: 20px;
       
       }
+      @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
 
-
+     .chat-container {
+      background-image: url("https://d1tgh8fmlzexmh.cloudfront.net/ccbp-static-website/chatbg.png");
+      background-size: cover;
+      font-family: "Roboto";
+      text-align: center;
+  
+  }
+  
+  .head-main {
+      text-align: center;
+      font-size: 18px;
+  }
+  
+ 
+  
+  
+  .main-heading {
+      text-align: center;
+      background-color: #323f4b;
+      color: white;
+      height: 50px;
+      font-weight: bold;
+  
+  }
+  
+  .chat {
+      font-size: 18px;
      
+      margin-top: 5px;
+      color: white;
+      margin-bottom: 10px;
+      padding: 10px;
+  }
+  
+  .chat-u {
+      border-radius: 10px 10px 10px 0px;
+      background-color: #52606d;
+      text-align: left;
+  }
+  
+  .chat-o {
+      border-radius: 10px 10px 0px 10px;
+      background-color: #47a3f3;
+      text-align: right;
+  }
 
+  .chat-input{
+    position: relative;
+  }
+  .chat-symbol{
+    position: absolute;
+    right:10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  body {
+    background: url("https://www.kindpng.com/picc/m/267-2676363_clip-art-fitness-logos-images-fitness-logo-free.png");
+    
+    background-size: cover;
+  }
       
-      
+  #rate-1,#rate-2,#rate-3,#rate-4,#rate-5{
+    display: none;
+  }
+
+  .feedback{
+    height: 100vh;
+  }
+  .star-icon{
+    font-size: 50px;
+    cursor: pointer;
+  }
+  .star-widget{
+     background-color: #323f4b;
+     margin: auto;
+     padding: 30px;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+
+.section-about {
+    background-color: #323f4b;
+    font-family: "Roboto";
+}
+
+.about-fact {
+    color: #cced00;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.skills-main-heading {
+    color: #cced00;
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.about-main-heading {
+  color: #cced00;
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.about-description {
+    color: #9aa5b1;
+}
+
+.section-skills {
+    background-color: #1f2933;
+    font-family: "Roboto";
+}
+
+.skill-1 {
+    text-align: center;
+    background-color: #323f4b;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+.skills-image {
+    width: 100%;
+
+}
+
+.skill-heading {
+    color: white;
+    font-size: 15px;
+    margin-top: 5px;
+}
     </style>
 </head>
 <body>
@@ -295,13 +433,12 @@
         background-color: #F7F7F7;
 
       } -->
-
+      
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="d-flex flex-grow-1">
       <span class="w-100 d-lg-none d-block">
           <!-- hidden spacer to center brand on mobile --></span>
       <a class="navbar-brand d-none d-lg-inline-block" href="{% url 'home'%}"><i class="fas fa-heartbeat"></i> Fit Mantra </a>
-  
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -324,11 +461,17 @@
               <li class="nav-item active">
                 <a class="nav-link m-2 menu-item nav-active fon" href="{% url 'myappointments' %}">Your appointments</a>
               </li>
+              <li class="nav-item active">
+                <a class="nav-link m-2 menu-item nav-active fon" href="">Payment</a>
+              </li>
+              
               {% endif %}
               <li class="nav-item active">
                 <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'logout' %}">Logout</a>
               </li>
-      
+              <li class="nav-item active">
+                <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'feedback' %}">Feedback</a>
+              </li>
               {% else %}
               <li {% if 'login' in request.path %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
                 <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'login'%}">Login</a>
@@ -337,6 +480,10 @@
                 <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'register' %}">Register</a>
               </li>
               {% endif %}
+              <li class="nav-item active">
+                <a class="nav-link m-2 menu-item nav-active fon log" href="{% url 'about' %}">About</a>
+              </li>
+              
       </ul>
   </div>
 </nav>

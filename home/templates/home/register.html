@@ -1,6 +1,6 @@
 {% extends 'home/base.html' %}  {% block content %}
 
-<form action="register" method="POST" class="card">
+<form action="register" method="POST" class="card shadow">
   {% csrf_token %} {% for message in messages %}
   <div class="alert">
     <span class="closebtn" onclick="this.parentElement.style.display='none';"
